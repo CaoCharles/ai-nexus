@@ -220,7 +220,7 @@ function generateConstants() {
             slug: generateSlug(file),
             title: frontmatter.title || file.replace('.md', ''),
             summary: extractSummary(frontmatter, body),
-            content: body.slice(0, 2000), // Limit content length
+            content: body, // Full content, no truncation
             imageUrl: getImageUrl(frontmatter, file),
             category: category,
             date: formatDate(frontmatter.date || file.slice(0, 10)),

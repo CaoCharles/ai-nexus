@@ -13,10 +13,10 @@ interface ArticleDetailProps {
  */
 const parseMarkdown = (markdown: string): string => {
   return markdown
-    // Escape HTML
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
+    // Links [text](url) - do this first before escaping
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800">$1</a>')
+    // Escape HTML (but not already processed links)
+    .replace(/&(?!amp;|lt;|gt;)/g, '&amp;')
     // Headers
     .replace(/^### (.+)$/gm, '<h3 class="text-xl font-black font-display text-black mt-6 mb-3 border-l-4 border-yellow-400 pl-4">$1</h3>')
     .replace(/^## (.+)$/gm, '<h2 class="text-2xl font-black font-display text-black mt-8 mb-4 border-l-4 border-yellow-400 pl-4">$1</h2>')
@@ -29,9 +29,12 @@ const parseMarkdown = (markdown: string): string => {
     .replace(/_(.+?)_/g, '<em class="italic">$1</em>')
     // Inline code
     .replace(/`(.+?)`/g, '<code class="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono">$1</code>')
-    // Bullet points
-    .replace(/^- (.+)$/gm, '<li class="ml-4 mb-2">• $1</li>')
-    .replace(/^\d+\) (.+)$/gm, '<li class="ml-4 mb-2">$1</li>')
+    // Bullet points - just convert dash to styled li, no extra bullet
+    .replace(/^- (.+)$/gm, '<li class="ml-4 mb-2 list-disc list-inside">$1</li>')
+    // Numbered lists like "1) item"
+    .replace(/^\d+\) (.+)$/gm, '<li class="ml-4 mb-2 list-decimal list-inside">$1</li>')
+    // Horizontal rules
+    .replace(/^---$/gm, '<hr class="my-8 border-t-2 border-gray-300" />')
     // Line breaks for paragraphs (double newline)
     .replace(/\n\n/g, '</p><p class="mb-4">')
     // Single line breaks
@@ -44,10 +47,10 @@ const parseMarkdown = (markdown: string): string => {
 export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, onBack, onSummarize }) => {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
-      
+
       {/* Navigation Bar */}
       <div className="mb-8">
-        <button 
+        <button
           onClick={onBack}
           className="group flex items-center gap-2 px-6 py-3 bg-white border-2 border-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
         >
@@ -57,16 +60,16 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, onBack, o
       </div>
 
       <article className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
-        
+
         {/* Hero Image Section */}
         <div className="relative h-[400px] w-full border-b-4 border-black bg-gray-200">
-          <img 
-            src={article.imageUrl} 
-            alt={article.title} 
+          <img
+            src={article.imageUrl}
+            alt={article.title}
             className="w-full h-full object-cover"
           />
           <div className="absolute bottom-0 left-0 bg-yellow-400 border-t-4 border-r-4 border-black px-6 py-3">
-             <span className="text-xl font-black uppercase tracking-widest">{article.category}</span>
+            <span className="text-xl font-black uppercase tracking-widest">{article.category}</span>
           </div>
         </div>
 
@@ -95,7 +98,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, onBack, o
 
           {/* Action Bar */}
           <div className="flex flex-wrap gap-4">
-            <button 
+            <button
               onClick={() => onSummarize(article)}
               className="flex items-center gap-2 px-6 py-3 bg-black text-white font-bold border-2 border-black hover:bg-yellow-400 hover:text-black transition-colors"
             >
@@ -111,14 +114,14 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, onBack, o
 
         {/* Article Content */}
         <div className="p-6 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
-          
+
           {/* Main Text */}
           <div className="lg:col-span-8">
             <div className="prose prose-xl max-w-none text-gray-800 leading-relaxed">
               <p className="text-2xl font-bold leading-relaxed mb-8 text-black first-letter:text-6xl first-letter:font-black first-letter:mr-2 first-letter:float-left">
                 {article.summary}
               </p>
-              <div 
+              <div
                 className="space-y-2 text-lg text-gray-700 markdown-content"
                 dangerouslySetInnerHTML={{ __html: parseMarkdown(article.content) }}
               />
