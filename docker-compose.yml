@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: ai-nexus
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      # 基本設定
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${N8N_USER:-admin}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASSWORD:-password}
+
+      # 時區設定（台灣時間）
+      - GENERIC_TIMEZONE=Asia/Taipei
+      - TZ=Asia/Taipei
+
+      # Webhook URL（本地開發用）
+      - WEBHOOK_URL=http://localhost:5678/
+
+      # 資料持久化
+      - N8N_USER_FOLDER=/home/node/.n8n
+
+      # 社群節點 - SQLite
+      - N8N_COMMUNITY_PACKAGES_ENABLED=true
+      - NODE_FUNCTION_ALLOW_EXTERNAL=*
+
+      # API 金鑰（從 .env 載入）
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - GOOGLE_CSE_ID=${GOOGLE_CSE_ID}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GITHUB_REPO=${GITHUB_REPO}
+
+      # 可選：通知設定
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL:-}
+      - EMAIL_SMTP_HOST=${EMAIL_SMTP_HOST:-}
+      - EMAIL_USER=${EMAIL_USER:-}
+      - EMAIL_PASS=${EMAIL_PASS:-}
+
+    volumes:
+      # n8n 資料持久化
+      - ./n8n-data:/home/node/.n8n
+
+      # SQLite 資料庫
+      - ./data:/data
+
+      # Workflow 匯出/匯入
+      - ./workflows:/workflows
+
+      # 輔助腳本
+      - ./scripts:/scripts
+
+      # 內容目錄（Markdown 文章）
+      - ./content:/content
+
+      # 圖片儲存
+      - ./content/assets/images:/images
+
+    networks:
+      - ai-news-network
+
+networks:
+  ai-news-network:
+    driver: bridge

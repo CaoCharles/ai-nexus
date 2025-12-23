@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build output
+content/_site/
+content/.sass-cache/
+content/.jekyll-cache/
+content/.jekyll-metadata
+frontend/dist/
+
+# Environment
+.env
+.env.local
+*.log
+
+# Docker data (local only)
+n8n-data/
+data/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Bundle
+content/Gemfile.lock
+content/.bundle/
+
+# n8n Workflow files (contain API keys - keep locally only)
+workflows/*.json
+workflow.json
