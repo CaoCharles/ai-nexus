@@ -1,12 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NewsArticle } from '../types';
-import { ArrowLeft, Calendar, User, Sparkles, Clock, Share2, Tag } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Sparkles, Clock, Share2, Tag, X, ZoomIn } from 'lucide-react';
 
 interface ArticleDetailProps {
   article: NewsArticle;
   onBack: () => void;
   onSummarize: (article: NewsArticle) => void;
 }
+
+// Image Lightbox Component
+const ImageLightbox: React.FC<{
+  src: string;
+  alt: string;
+  isOpen: boolean;
+  onClose: () => void;
+}> = ({ src, alt, isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 animate-in fade-in duration-200"
+      onClick={onClose}
+    >
+      {/* Close button */}
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-10"
+        aria-label="Close"
+      >
+        <X size={28} />
+      </button>
+
+      {/* Click anywhere hint */}
+      <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm font-medium">
+        點擊任意處關閉
+      </p>
+
+      {/* Image */}
+      <img
+        src={src}
+        alt={alt}
+        className="max-w-[95vw] max-h-[90vh] object-contain shadow-2xl animate-in zoom-in-95 duration-200"
+        onClick={(e) => e.stopPropagation()}
+      />
+    </div>
+  );
+};
 
 /**
  * Simple markdown to HTML converter
@@ -45,8 +84,18 @@ const parseMarkdown = (markdown: string): string => {
 };
 
 export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, onBack, onSummarize }) => {
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
+
+      {/* Image Lightbox */}
+      <ImageLightbox
+        src={article.imageUrl}
+        alt={article.title}
+        isOpen={isLightboxOpen}
+        onClose={() => setIsLightboxOpen(false)}
+      />
 
       {/* Navigation Bar */}
       <div className="mb-8">
@@ -61,13 +110,23 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, onBack, o
 
       <article className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
 
-        {/* Hero Image Section */}
-        <div className="relative h-[400px] w-full border-b-4 border-black bg-gray-200">
+        {/* Hero Image Section - Clickable */}
+        <div
+          className="relative h-[400px] w-full border-b-4 border-black bg-gray-200 cursor-pointer group"
+          onClick={() => setIsLightboxOpen(true)}
+        >
           <img
             src={article.imageUrl}
             alt={article.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform group-hover:scale-[1.02]"
           />
+          {/* Zoom indicator on hover */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 px-4 py-2 rounded-lg flex items-center gap-2 font-bold border-2 border-black shadow-lg">
+              <ZoomIn size={20} />
+              點擊查看大圖
+            </div>
+          </div>
           <div className="absolute bottom-0 left-0 bg-yellow-400 border-t-4 border-r-4 border-black px-6 py-3">
             <span className="text-xl font-black uppercase tracking-widest">{article.category}</span>
           </div>
