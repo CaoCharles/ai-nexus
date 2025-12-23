@@ -181,10 +181,22 @@ const AppContent: React.FC = () => {
 
           <div className="flex items-center gap-3">
             <div className="hidden md:flex items-center gap-2 mr-4">
-              <a href="#" className="p-2 border-2 border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[1px] hover:translate-x-[1px] hover:shadow-none transition-all">
+              <a
+                href="https://github.com/CaoCharles/ai-nexus"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="View on GitHub"
+                className="p-2 border-2 border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[1px] hover:translate-x-[1px] hover:shadow-none transition-all hover:bg-yellow-400"
+              >
                 <Github size={20} />
               </a>
-              <a href="#" className="p-2 border-2 border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[1px] hover:translate-x-[1px] hover:shadow-none transition-all">
+              <a
+                href="https://caocharles.github.io/ai-nexus/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Visit Live Website"
+                className="p-2 border-2 border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[1px] hover:translate-x-[1px] hover:shadow-none transition-all hover:bg-yellow-400"
+              >
                 <Globe size={20} />
               </a>
             </div>
