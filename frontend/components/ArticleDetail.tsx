@@ -53,13 +53,13 @@ const ImageLightbox: React.FC<{
 const parseMarkdown = (markdown: string): string => {
   return markdown
     // Links [text](url) - do this first before escaping
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800">$1</a>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800 break-words">$1</a>')
     // Escape HTML (but not already processed links)
     .replace(/&(?!amp;|lt;|gt;)/g, '&amp;')
     // Headers
-    .replace(/^### (.+)$/gm, '<h3 class="text-xl font-black font-display text-black mt-6 mb-3 border-l-4 border-yellow-400 pl-4">$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2 class="text-2xl font-black font-display text-black mt-8 mb-4 border-l-4 border-yellow-400 pl-4">$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1 class="text-3xl font-black font-display text-black mt-10 mb-5">$1</h1>')
+    .replace(/^### (.+)$/gm, '<h3 class="text-xl font-black font-display text-black mt-8 mb-4 border-l-4 border-yellow-400 pl-4">$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2 class="text-2xl font-black font-display text-black mt-10 mb-5 border-l-4 border-yellow-400 pl-4">$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1 class="text-3xl font-black font-display text-black mt-12 mb-6">$1</h1>')
     // Bold
     .replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-black">$1</strong>')
     .replace(/__(.+?)__/g, '<strong class="font-bold text-black">$1</strong>')
@@ -68,18 +68,18 @@ const parseMarkdown = (markdown: string): string => {
     .replace(/_(.+?)_/g, '<em class="italic">$1</em>')
     // Inline code
     .replace(/`(.+?)`/g, '<code class="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono">$1</code>')
-    // Bullet points - just convert dash to styled li, no extra bullet
-    .replace(/^- (.+)$/gm, '<li class="ml-4 mb-2 list-disc list-inside">$1</li>')
-    // Numbered lists like "1) item"
-    .replace(/^\d+\) (.+)$/gm, '<li class="ml-4 mb-2 list-decimal list-inside">$1</li>')
+    // Bullet points
+    .replace(/^- (.+)$/gm, '<li class="ml-6 mb-2 list-disc list-outside marker:text-yellow-500">$1</li>')
+    // Numbered lists
+    .replace(/^\d+\) (.+)$/gm, '<li class="ml-6 mb-2 list-decimal list-outside marker:font-bold">$1</li>')
     // Horizontal rules
     .replace(/^---$/gm, '<hr class="my-8 border-t-2 border-gray-300" />')
     // Line breaks for paragraphs (double newline)
-    .replace(/\n\n/g, '</p><p class="mb-4">')
+    .replace(/\n\n/g, '</p><p class="mb-6 leading-loose text-lg text-gray-800">')
     // Single line breaks
     .replace(/\n/g, '<br/>')
     // Wrap in paragraph
-    .replace(/^/, '<p class="mb-4">')
+    .replace(/^/, '<p class="mb-6 leading-loose text-lg text-gray-800">')
     .replace(/$/, '</p>');
 };
 
@@ -176,12 +176,12 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, onBack, o
 
           {/* Main Text */}
           <div className="lg:col-span-8">
-            <div className="prose prose-xl max-w-none text-gray-800 leading-relaxed">
-              <p className="text-2xl font-bold leading-relaxed mb-8 text-black first-letter:text-6xl first-letter:font-black first-letter:mr-2 first-letter:float-left">
+            <div className="prose prose-xl max-w-none text-gray-800">
+              <p className="text-2xl font-bold leading-relaxed mb-10 text-black border-l-4 border-black pl-6">
                 {article.summary}
               </p>
               <div
-                className="space-y-2 text-lg text-gray-700 markdown-content"
+                className="markdown-content"
                 dangerouslySetInnerHTML={{ __html: parseMarkdown(article.content) }}
               />
             </div>
