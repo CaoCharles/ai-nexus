@@ -77,10 +77,10 @@ const HomePage: React.FC<{
       <section className="mb-12 animate-in fade-in slide-in-from-bottom-2 duration-500">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
           <div>
-            <h2 className="text-5xl md:text-7xl font-black mb-4 font-display uppercase leading-none">
+            <h2 className="text-4xl md:text-7xl font-black mb-4 font-display uppercase leading-none">
               Latest<br />Updates
             </h2>
-            <p className="text-xl font-medium text-gray-600 max-w-none border-l-4 border-black pl-4 whitespace-nowrap">
+            <p className="text-lg md:text-xl font-medium text-gray-600 max-w-none border-l-4 border-black pl-4 whitespace-normal md:whitespace-nowrap">
               Curated AI news, summaries, and breakthroughs. Built with multiple LLMs.
             </p>
           </div>
@@ -174,7 +174,7 @@ const AppContent: React.FC = () => {
             <div className="w-10 h-10 bg-black text-white flex items-center justify-center font-black text-xl border-2 border-black transform -rotate-3 group-hover:rotate-0 transition-transform">
               AI
             </div>
-            <h1 className="text-2xl font-black tracking-tight uppercase hidden sm:block group-hover:tracking-normal transition-all">
+            <h1 className="text-xl sm:text-2xl font-black tracking-tight uppercase group-hover:tracking-normal transition-all ml-2">
               NEXUS<span className="text-yellow-500">NEWS</span>
             </h1>
           </Link>
@@ -200,7 +200,7 @@ const AppContent: React.FC = () => {
                 <Globe size={20} />
               </a>
             </div>
-            <div className="flex items-center px-4 py-2 bg-yellow-400 border-2 border-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <div className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-base bg-yellow-400 border-2 border-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               Total: {MOCK_NEWS.length}
             </div>
           </div>
