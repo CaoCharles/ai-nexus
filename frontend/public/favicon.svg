@@ -1,4 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" fill="#000000"/>
-  <path d="M55 5L25 55h20l-10 40 40-50H55z" fill="#facc15" stroke="none"/>
+  <!-- Rotated group -->
+  <g transform="rotate(-3, 50, 50)">
+    <!-- Black box with border -->
+    <rect x="10" y="10" width="80" height="80" fill="black" stroke="black" stroke-width="4" />
+    <!-- AI Text -->
+    <text x="50" y="65" font-family="Arial, sans-serif" font-weight="900" font-size="50" fill="white" text-anchor="middle">AI</text>
+  </g>
 </svg>
