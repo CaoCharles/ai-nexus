@@ -5,6 +5,7 @@ export interface NewsArticle {
   slug?: string; // URL-friendly identifier, e.g., "claude-daily-2025-12-23"
   title: string;
   summary: string;
+  aiSummary?: string; // Pre-generated AI summary from frontmatter
   content: string; // Full content for AI summarization
   imageUrl: string;
   category: Category;

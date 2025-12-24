@@ -7,7 +7,7 @@ import { ArticleDetail } from './components/ArticleDetail';
 import { MOCK_NEWS } from './articles';
 import { Category, NewsArticle } from './types';
 import { Search, Filter, Github, Globe, Zap } from 'lucide-react';
-import { summarizeArticle } from './services/geminiService';
+import { summarizeArticle } from './services/aiSummaryService';
 
 // Get article slug (pre-generated in constants.ts via GitHub Actions)
 const getSlug = (article: NewsArticle): string => {
@@ -154,8 +154,14 @@ const AppContent: React.FC = () => {
     setSummaryTitle(article.title);
     setSummaryContent('');
     setIsModalOpen(true);
-    setIsSummarizing(true);
 
+    // Check if pre-generated summary exists
+    if (article.aiSummary) {
+      setSummaryContent(article.aiSummary);
+      return;
+    }
+
+    setIsSummarizing(true);
     const summary = await summarizeArticle(article.content);
 
     setSummaryContent(summary);

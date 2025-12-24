@@ -220,6 +220,7 @@ function generateConstants() {
             slug: generateSlug(file),
             title: frontmatter.title || file.replace('.md', ''),
             summary: extractSummary(frontmatter, body),
+            aiSummary: frontmatter.ai_summary || '', // Extract from frontmatter
             content: body, // Full content, no truncation
             imageUrl: getImageUrl(frontmatter, file),
             category: category,
@@ -248,6 +249,7 @@ ${articles.map(article => `  {
     slug: '${article.slug}',
     title: ${JSON.stringify(article.title)},
     summary: ${JSON.stringify(article.summary)},
+    aiSummary: ${JSON.stringify(article.aiSummary)},
     content: ${JSON.stringify(article.content)},
     imageUrl: ${JSON.stringify(article.imageUrl)},
     category: ${article.category},
