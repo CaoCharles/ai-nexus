@@ -167,28 +167,19 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, onBack, o
             <button
               onClick={() => {
                 const url = window.location.href;
-                if (navigator.share) {
-                  navigator.share({
-                    title: article.title,
-                    text: article.summary,
-                    url: url
-                  }).catch(() => { });
-                } else {
-                  // Fallback for browsers without clipboard API (or HTTP)
-                  const textArea = document.createElement('textarea');
-                  textArea.value = url;
-                  textArea.style.position = 'fixed';
-                  textArea.style.left = '-9999px';
-                  document.body.appendChild(textArea);
-                  textArea.select();
-                  try {
-                    document.execCommand('copy');
-                    alert('連結已複製！');
-                  } catch (err) {
-                    alert('請手動複製連結：' + url);
-                  }
-                  document.body.removeChild(textArea);
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-9999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                  document.execCommand('copy');
+                  alert('連結已複製！');
+                } catch (err) {
+                  alert('請手動複製連結：' + url);
                 }
+                document.body.removeChild(textArea);
               }}
               className="flex items-center gap-2 px-6 py-3 bg-white text-black font-bold border-2 border-black hover:bg-gray-100 transition-colors"
             >
