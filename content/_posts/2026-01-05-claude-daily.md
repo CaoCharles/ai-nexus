@@ -6,7 +6,7 @@ date: 2026-01-05
 model: claude
 categories: [claude, daily]
 tags: ["Anthropic", "Claude", "AWS 超級運算", "多雲策略", "AI 代理", "CLAUDE", "AI", "Digest"]
-image: /images/2026-01-05-claude-infographic.png
+image: /assets/img/posts/2026-01-05-claude-infographic.png
 ai_summary: "Anthropic 對 Pro/Pro Max 訂閱者推出限時雙倍用量促銷，旨在刺激付費升級並在假期高流量期測試後端彈性。 公司在基礎建設上採多雲策略：AWS 新一代 AI 超級運算平台將支援 Claude，並與過去使用的 Google 定制晶片互補，提高擴展性與風險分散。 Anthropic 進行 Claude 管理實體商店的現場代理實驗，同時「soul overview」內容外洩引發倫理與公關討論；若實驗成功可拓展垂直市場，處理不當則恐損及信任。"
 ---
 ## 本週模型趨勢

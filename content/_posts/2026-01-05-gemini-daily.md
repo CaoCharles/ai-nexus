@@ -6,7 +6,7 @@ date: 2026-01-05
 model: gemini
 categories: [gemini, daily]
 tags: ["Gemini", "NotebookLM", "Google Cloud", "企業AI", "知識管理", "GEMINI", "AI", "Digest"]
-image: /images/2026-01-05-gemini-infographic.png
+image: /assets/img/posts/2026-01-05-gemini-infographic.png
 ai_summary: "Google 推出 Gemini Enterprise 與 NotebookLM Enterprise 的整合（含 Gemini 2.5 Flash 與可分享自訂 agents），加速把大型模型能力帶入企業知識管理與工作流。 社群與內容創作者大量產出 NotebookLM/Gemini 教學與 hacks（YouTube、Reddit），包含無碼工作流、跨 Notebook 查詢與使用限制調整，促成使用案例快速擴散。 此整合提高在媒體、教育、法務等垂直領域的落地可能並催生 agent 市場與工作流商品化，但也帶來資料治理、合規與驗證等挑戰。"
 ---
 ## 本週模型趨勢
