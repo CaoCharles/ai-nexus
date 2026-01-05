@@ -6,7 +6,7 @@ import { AIModal } from './components/AIModal';
 import { ArticleDetail } from './components/ArticleDetail';
 import { MOCK_NEWS } from './articles';
 import { Category, NewsArticle } from './types';
-import { Search, Filter, Github, Globe, Zap } from 'lucide-react';
+import { Search, Filter, Github, Globe, Zap, User } from 'lucide-react';
 import { summarizeArticle } from './services/aiSummaryService';
 
 // Get article slug (pre-generated in constants.ts via GitHub Actions)
@@ -210,9 +210,9 @@ const AppContent: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 title="About the Creator"
-                className="px-3 py-1 border-2 border-black rounded font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[1px] hover:translate-x-[1px] hover:shadow-none transition-all hover:bg-yellow-400"
+                className="p-2 border-2 border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[1px] hover:translate-x-[1px] hover:shadow-none transition-all hover:bg-yellow-400"
               >
-                👨‍💻 Creator
+                <User size={20} />
               </a>
             </div>
             <div className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-base bg-yellow-400 border-2 border-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
