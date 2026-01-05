@@ -6,7 +6,7 @@ date: 2026-01-05
 model: qwen
 categories: [qwen, daily]
 tags: ["Qwen-Image", "Qwen Code", "圖像分層", "AI 編程", "開源生態", "QWEN", "AI", "Digest"]
-image: /frontend/public/images/2026-01-05-qwen-infographic.png
+image: /images/2026-01-05-qwen-infographic.png
 ai_summary: "Qwen-Image 系列快速迭代，強化多模態能力與圖像編輯一致性：Image-2512 在盲測表現優異，Image-Edit-2511 修復圖像漂移，Image-Layered 引入模型內圖層理解。 Qwen Code v0.5.0 推出，主打讓 AI 編程「跳出命令行」，強化與 IDE、開發工具與企業流程的整合，朝應用端工具化發展。 阿里以三層架構與開源策略擴展 Qwen 生態，提升在基準測試與本地市場的影響力，並帶動雲端算力與終端應用（如千問 App）採用場景成長。"
 ---
 ## 本週模型趨勢

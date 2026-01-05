@@ -6,7 +6,7 @@ date: 2026-01-05
 model: mistral
 categories: [mistral, daily]
 tags: ["Mistral", "Mixtral-8x7B", "MoE", "32k長上下文", "資訊安全", "MISTRAL", "AI", "Digest"]
-image: /frontend/public/images/2026-01-05-mistral-infographic.png
+image: /images/2026-01-05-mistral-infographic.png
 ai_summary: "Mistral 社群釋出 Mixtral-8x7B（mixtral-8x7b-32kseqlen），約 87GB 檔案，採 8×7B MoE 架構並支援 32k 長上下文，迅速被鏡像與討論。 第三方工具（token 計算器、Unsloth 模型目錄、GGUF/4-bit 版本等）快速整合支援，提升可用性與離線部署可行性，但 MoE 在路由與硬體部署上仍具挑戰。 研究與資安社群指出開源高效模型帶來雙向影響：促進長文本應用與防禦能力，同時增加被濫用（如釣魚攻擊）的風險；產業端因硬體相容性與效能成本調整部署策略（如 Groq deprecate）。"
 ---
 mistral 每日動態報導

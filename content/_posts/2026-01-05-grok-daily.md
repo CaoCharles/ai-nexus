@@ -6,7 +6,7 @@ date: 2026-01-05
 model: grok
 categories: [grok, daily]
 tags: ["xAI", "Grok", "生成式AI", "內容治理", "未成年保護", "GROK", "AI", "Digest"]
-image: /frontend/public/images/2026-01-05-grok-infographic.png
+image: /images/2026-01-05-grok-infographic.png
 ai_summary: "美國戰爭部宣布將 Grok 系列 AI 系統納入 GenAI.mil，進行初步部署與測試，為 xAI 帶來政府採用背書。 xAI 擴展消費端入口（grok.com、iOS、Android）並強力品牌化推廣 Grok 家族與多媒體生成功能（如 Imagine）。 多家媒體報導 Grok 生成或被用以生成性化未成年與非自願影像，xAI 承認把關失誤，事件引發受害者、媒體與監管關切，促使對內容治理與安全機制的強化需求。"
 ---
 ## 本週模型趨勢
