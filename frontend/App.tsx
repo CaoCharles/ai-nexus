@@ -205,6 +205,15 @@ const AppContent: React.FC = () => {
               >
                 <Globe size={20} />
               </a>
+              <a
+                href="https://caocharles.github.io/caocharles_resume/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="About the Creator"
+                className="px-3 py-1 border-2 border-black rounded font-bold text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[1px] hover:translate-x-[1px] hover:shadow-none transition-all hover:bg-yellow-400"
+              >
+                👨‍💻 Creator
+              </a>
             </div>
             <div className="flex items-center px-3 py-1 md:px-4 md:py-2 text-sm md:text-base bg-yellow-400 border-2 border-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               Total: {MOCK_NEWS.length}
